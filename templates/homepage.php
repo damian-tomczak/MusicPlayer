@@ -42,19 +42,16 @@ $(document).ready(function(){
             <button onclick="playAudio()" type="button">Play Audio</button>
             <button onclick="pauseAudio()" type="button">Pause Audio</button> 
 
-            <script>
-                
-            var x = document.getElementById("myAudio"); 
-            var address = "dsds";
-            console.log(address);
-            function playAudio(address) {
-                console.log(address);
-                x.play(); 
-            } 
+            <script>    
+                var x = document.getElementById("myAudio"); 
+                function playAudio(address) {
+                    console.log(address);
+                    x.play(); 
+                } 
 
-            function pauseAudio() { 
-            x.pause(); 
-            } 
+                function pauseAudio() { 
+                x.pause(); 
+                } 
             </script>
         </div>
   </div>

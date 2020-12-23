@@ -27,8 +27,9 @@ if(isset($_REQUEST["term"])){
             if(mysqli_num_rows($result) > 0){
                 // Fetch result rows as an associative array
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo '<script>	
-                    $( ".result" ).append( "<a onclick=playAudio(' . $row["src"] . ')>Test</a><br>" );
+                    echo '<script>
+                    var address = "'. $row["src"] .'";	
+                    $( ".result" ).append( "<a onclick=playAudio(address)>Test</a><br>" );
                     </script>';
                 }
             } else{
