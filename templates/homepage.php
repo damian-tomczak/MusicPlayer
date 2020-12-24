@@ -7,9 +7,14 @@ $(document).ready(function(){
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result");
         if(inputVal.length){
-            $.get("Songs.php", {term: inputVal}).done(function(data){
+            $.getJSON("Songs.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
-                resultDropdown.html(data);
+                console.log(data);
+                var suma="";
+                for(i=0;i<data.length;i+=3){
+                    suma  +=  '<a onclick=playAudio("'+data[i]+'")>'+data[i+2]+' '+data[i+1]+'</a><br>';
+                }
+                resultDropdown.html(suma);
             });
         } else{
             resultDropdown.empty();
@@ -34,19 +39,15 @@ $(document).ready(function(){
           </div>
         </div>
         <div class="col">
-            <audio id="myAudio">
-                <source src="" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-
-            <button onclick="playAudio()" type="button">Play Audio</button>
-            <button onclick="pauseAudio()" type="button">Pause Audio</button> 
+        <audio id="my-audio" controls>
+            <source src="" type="audio/mpeg">
+        </audio>
 
             <script>    
                 var x = document.getElementById("myAudio"); 
                 function playAudio(address) {
                     console.log(address);
-                    x.play(); 
+                    document.getElementById("my-audio").setAttribute('src', address);
                 } 
 
                 function pauseAudio() { 

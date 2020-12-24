@@ -10,7 +10,7 @@ if($link === false){
  
 if(isset($_REQUEST["term"])){
     // Prepare a select statement
-    $sql = "SELECT utwory.tytul, utwory.src FROM utwory inner join wykonawcy on utwory.autor = wykonawcy.nrwydawnictwa where wykonawcy.nazwa like ?";
+    $sql = "SELECT performers.name, songs.src, songs.title FROM details INNER JOIN performers on performers.id = details.idAuthor INNER JOIN songs ON songs.id = details.idSong where performers.name like ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -18,20 +18,22 @@ if(isset($_REQUEST["term"])){
         
         // Set parameters
         $param_term = $_REQUEST["term"] . '%';
-        
+
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             $result = mysqli_stmt_get_result($stmt);
-            
             // Check number of rows in the result set
             if(mysqli_num_rows($result) > 0){
+                $myArr = array();
                 // Fetch result rows as an associative array
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo '<script>
-                    var address = "'. $row["src"] .'";	
-                    $( ".result" ).append( "<a onclick=playAudio(address)>Test</a><br>" );
-                    </script>';
+                    array_push($myArr, $row["src"]);
+                    array_push($myArr, $row["title"]);
+                    array_push($myArr, $row["name"]);	
+
                 }
+                $myJSON = json_encode($myArr);
+                echo $myJSON;
             } else{
                 echo "<p>No matches found</p>";
             }
