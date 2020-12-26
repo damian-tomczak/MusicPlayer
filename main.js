@@ -30,27 +30,22 @@ function playAudio(address) {
 
 $(document).ready(function(){
     $('.search-box input[type="text"]').on("keyup input", function(){
-        /* Get input value on change */
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result");
         if(inputVal.length){
             $.getJSON("functions/songs.php", {term: inputVal}).done(function(data){
-                // Display the returned data in browser
-                console.log(data);
-                var suma="";
-                for(i=0;i<data.length;i+=3){
-                    suma  +=  '<a onclick=playAudio("'+data[i]+'")>'+data[i+2]+' '+data[i+1]+'</a><br>';
+                if(data=="0") {
+                    resultDropdown.html("<p>No matches found</p>");
+                } else {
+                    var suma="";
+                    for(i=0;i<data.length;i+=4){
+                        suma  +=  '<a href="#" onclick=playAudio("'+data[i]+'")>'+data[i+2]+' | '+data[i+1]+'</a><br>';
+                    }
+                    resultDropdown.html(suma);
                 }
-                resultDropdown.html(suma);
             });
-        } else{
+        } else {
             resultDropdown.empty();
         }
-    });
-    
-    // Set search input value on click of result item
-    $(document).on("click", ".result p", function(){
-        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-        $(this).parent(".result").empty();
     });
 });

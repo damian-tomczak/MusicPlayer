@@ -4,3 +4,13 @@
     }
 
 }
+
+#devSection a, #devSection a:visited, #devSection a:hover, #devSection a:active {
+    background-color: #ffc107 !important;
+    color: #000000;
+}
+
+#choose a:hover {
+    background-color: #17a2b8 !important;
+    color: #ffffff;
+}

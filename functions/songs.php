@@ -1,6 +1,5 @@
 <?php
-/* Attempt MySQL server connection. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
+
 $link = mysqli_connect("localhost", "srv22455_muzyka", "srv22455_muzyka", "srv22455_muzyka");
  
 // Check connection
@@ -10,7 +9,7 @@ if($link === false){
  
 if(isset($_REQUEST["term"])){
     // Prepare a select statement
-    $sql = "SELECT performers.name, songs.src, songs.title FROM details INNER JOIN performers on performers.id = details.idAuthor INNER JOIN songs ON songs.id = details.idSong where performers.name like ?";
+    $sql = "SELECT performers.name, songs.src, songs.title, songs.img FROM details INNER JOIN performers on performers.id = details.idAuthor INNER JOIN songs ON songs.id = details.idSong where performers.name like ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -29,13 +28,15 @@ if(isset($_REQUEST["term"])){
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                     array_push($myArr, $row["src"]);
                     array_push($myArr, $row["title"]);
-                    array_push($myArr, $row["name"]);	
+                    array_push($myArr, $row["name"]);
+                    array_push($myArr, $row["img"]);	
 
                 }
                 $myJSON = json_encode($myArr);
                 echo $myJSON;
             } else{
-                echo "<p>No matches found</p>";
+                $myJSON = json_encode("0");
+                echo $myJSON;
             }
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);

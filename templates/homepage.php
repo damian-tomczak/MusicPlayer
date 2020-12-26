@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="col">
-            <img src="http://placekitten.com/300/300" class="img-rounded img-responsive column-margin" alt="ERROR: IMAGE NOT LOADED"></img>
+            <img src="https://muzyka.damian-tomczak.pl/welcome.png" class="rounded img-fluid column-margin" alt="ERROR: IMAGE NOT LOADED" id="coverArt"></img>
             <audio id="my-audio" controls autoplay>
                 <source src="" type="audio/mpeg">
             </audio>

@@ -11,6 +11,6 @@
     function homepage() {
         $results = array();
         $results['pageTitle'] = "Music Player";
-        require(TEMPLATE_PATH."/homepage.php");    
+        require("templates/homepage.php");    
     }
 ?>
