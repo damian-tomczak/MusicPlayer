@@ -10,7 +10,6 @@
     color: #000000;
 }
 
-#choose a:hover {
-    background-color: #17a2b8 !important;
-    color: #ffffff;
+li {
+    margin-top: 3vh;
 }
