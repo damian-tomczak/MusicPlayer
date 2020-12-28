@@ -23,7 +23,7 @@ if($stmt = mysqli_prepare($link, $sql)){
             $myJSON = json_encode($myArr);
             echo $myJSON;
         } else{
-            $myJSON = json_encode(0);
+            $myJSON = json_encode("0");
             echo $myJSON;
         }
     } else{

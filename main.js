@@ -5,26 +5,17 @@ $(document).on('click', '#firstbutton', function() {
             if(data[0]=="0") {
                 $("#firstresult").html("<span class='text-white bg-danger'>Entry does not exist in the database!</span>");
             } else {
-                console.log(1);
-                $("#firstresult").html("<span class='text-white bg-danger'>"+data[0]+"</span>");
+                var suma="";
+                for(i=0;i<data.length;i++){
+                    suma  +=  "<span class='text-white bg-danger'>"+data[i]+"</span> ";
+                }
+                $("#firstresult").html(suma);
             }
         });
     } else{
         $("#firstresult").html("<span class='text-white bg-danger'>Input empty!</span>");
     }
 
-});
-
-$(document).on('click', '#secondbutton', function(){
-    console.log(2);
-});
-
-$(document).on('click', '#thridbutton', function(){
-    console.log(3);
-});
-
-$(document).on('click', '#fourthbutton', function(){
-    console.log(4);
 });
 
 function showDevSection() {
